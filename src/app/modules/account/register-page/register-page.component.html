@@ -1,0 +1,28 @@
+<div class="container">
+
+    <form #f="ngForm" (ngSubmit)="registrar()">
+      <div class="col-sm-12">
+        <span for="apelido">Apelido:</span>
+        <input type="text" pInputText name="apelido" id="apelido" [(ngModel)]="usuario.apelido" maxlength="30" required/>
+      </div>
+      
+      <div class="col-sm-12">
+        <span for="email">Email:</span>
+        <input type="text" pInputText name="email" id="email" [(ngModel)]="usuario.email"  maxlength="200" required/>
+      </div>
+      
+  
+      <div class="col-sm-12">
+        <span for="senha">Senha:</span>
+        <input type="password" pInputText name="senha" id="senha" [(ngModel)]="usuario.senha" minlength="3" maxlength="30" required/>
+      </div>
+  
+      <div class="col-sm-12">
+          <button pButton label="Registrar-se" [disabled]="f.invalid"></button>
+      </div>
+      
+    </form>
+  
+  
+  
+  </div>

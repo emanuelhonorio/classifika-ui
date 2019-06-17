@@ -1,0 +1,13 @@
+<div class="meu-anuncio">
+  <div class="anuncio-img-container">
+      <img *ngIf="anuncio?.fotos?.length > 0" [src]="anuncio?.fotos[0]?.url"/>
+  </div>
+  <div class="anuncio-info">
+      <a href="javascript:;" class="anuncio-titulo">{{anuncio?.titulo}}</a>
+      <span class="anuncio-preco">R$ {{anuncio?.preco | number: '1.2-2' }}</span>
+  </div>
+  <div class="anuncio-buttons">
+    <ng-content select="span.button">
+    </ng-content>
+  </div>
+</div>

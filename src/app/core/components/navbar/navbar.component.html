@@ -1,0 +1,20 @@
+<header class="navbar">
+  <div class="container">
+        <div class="navbar-container">
+            <a href="javascript:;" routerLink="" class="logo">
+                Classifika!
+            </a>
+            <nav class="nav">
+                <ng-template [ngIf]="isLogado()">
+                    <a href="javascript:;" class="nav-link" routerLink="/meus-anuncios">Meus anúncios</a>
+                    <!-- <a href="javascript:;" class="nav-link" routerLink="/minha-conta">Minha conta</a> -->
+                    <a href="javascript:;" class="nav-link" (click)="deslogar()">Sair</a>
+                </ng-template>
+                <ng-template [ngIf]="!isLogado()">
+                    <a href="javascript:;" class="nav-link" routerLink="/entrar">Entrar</a>
+                </ng-template>
+                <a href="javascript:;" class="cta" routerLink="/anunciar">Anunciar</a>
+            </nav>
+        </div>
+   </div>
+</header>

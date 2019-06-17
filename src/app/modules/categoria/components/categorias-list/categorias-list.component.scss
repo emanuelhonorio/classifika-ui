@@ -1,0 +1,38 @@
+.categorias-component {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 9px;
+    
+    margin-bottom: 30px;
+
+    h2 {
+        font-size: 1.1em;
+        color: #555;
+        border-bottom: 1.5px solid #AA42F4;
+        padding-bottom: 5px;
+        max-width: 80%;
+        margin-bottom: 15px;
+    }
+
+    .categorias-list {
+        list-style: none;
+
+        a {
+            display: inline-block;
+            color: #555;
+            text-decoration: none;
+            font-size: .85em;
+            padding: 2px 0;
+    
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .btnExcluir {
+        margin-left: 5px;
+        color: #AA42F4;
+    }
+    
+}

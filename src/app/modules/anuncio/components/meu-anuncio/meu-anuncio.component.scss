@@ -1,0 +1,50 @@
+.meu-anuncio {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 3px;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.meu-anuncio:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.anuncio-img-container {
+    width: 100px;
+    height: 70px;
+    background-color: #ccc;
+    border-radius: 3px;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.anuncio-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 5px 10px;
+    font-size: .9em;
+    border-radius: 3px;
+}
+
+.anuncio-titulo {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.anuncio-preco {
+    font-weight: bold;
+    color: #AA42F4;
+}
+
+.anuncio-buttons {
+    display: flex;
+    align-items: center;
+    font-size: .8em;
+}

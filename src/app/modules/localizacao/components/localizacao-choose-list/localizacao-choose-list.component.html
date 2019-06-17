@@ -1,0 +1,6 @@
+<div class="localizacao-component">
+  <p><i class="fas fa-map-marker-alt"></i>Escolha seu estado:</p>
+  <div class="localizacoes">
+      <a *ngFor="let localizacao of localizacoes" [ngClass]="{selecionado: localizacao === localizacaoSelecionada}" href="javascript:;" (click)="onLocalizacaoSelect(localizacao)">{{localizacao}}</a>
+  </div>
+</div>

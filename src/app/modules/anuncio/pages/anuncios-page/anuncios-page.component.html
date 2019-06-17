@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+       <app-categorias-list (select)="aoCategoriaSelecionada($event)" (excluir)="aoExcluirSelecaoCategoria($event)" [categoriaSelecionada]="categoriaSelecionada"></app-categorias-list>
+    </div>
+    <div class="col-sm-8">
+        <form #fTitulo="ngForm" (ngSubmit)="filtrarTitulo(inputTitulo.value)">
+            <input class="search-bar" type="text" placeholder="Pesquise por anúncios" #inputTitulo name="titulo" [(ngModel)]="anuncioFilter.titulo">
+        </form>
+        <app-localizacao-choose-list [localizacaoSelecionada]="anuncioFilter.uf" (select)="aoLocalizacaoSelecionada($event)" (excluir)="aoExcluirLocalizacaoSelecionada($event)"></app-localizacao-choose-list>
+        <app-anuncio-grid [anuncios]="anuncios"></app-anuncio-grid>
+    </div>
+  </div>
+</div>
+

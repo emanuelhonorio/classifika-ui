@@ -1,0 +1,9 @@
+<div class="categorias-component">
+  <h2>Categorias</h2>
+   <ul class="categorias-list">
+       <li *ngFor="let categoria of categorias">
+         <a href="javascript:;" (click)="aoClicarCategoria(categoria)">{{categoria.nome}}</a>
+         <span *ngIf="categoria.id === categoriaSelecionada.id" (click)="excluirSelecao()" class="btnExcluir"><i class="fas fa-times"></i></span>
+        </li>
+   </ul>
+</div>

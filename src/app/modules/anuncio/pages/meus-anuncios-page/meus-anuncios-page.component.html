@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Meus anuncios</h2>
+
+  <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+  <p-tabView>
+    <p-tabPanel header="Anúncios ativos ({{anunciosAtivos.length}})">
+        <div class="meus-anuncios-grid">
+            <app-meu-anuncio *ngFor="let anuncio of anunciosAtivos" [anuncio]="anuncio">
+              <span class="button" (click)="desativar(anuncio)">Desativar</span>
+              <span class="button" (click)="excluir(anuncio)">Excluir</span>
+            </app-meu-anuncio>
+          </div>
+    </p-tabPanel>
+    <p-tabPanel header="Anúncios inativos ({{anunciosInativos.length}})">
+        <div class="meus-anuncios-grid">
+            <app-meu-anuncio *ngFor="let anuncio of anunciosInativos" [anuncio]="anuncio">
+                <span class="button" (click)="ativar(anuncio)">Ativar</span>
+                <span class="button" (click)="excluir(anuncio)">Excluir</span>
+            </app-meu-anuncio>
+          </div>
+    </p-tabPanel>
+    <p-tabPanel header="Anúncios expirados ({{anunciosExpirados.length}})">
+
+        <app-meu-anuncio *ngFor="let anuncio of anunciosExpirados" [anuncio]="anuncio">
+          <span class="button" (click)="renovar(anuncio)">Renovar</span>
+          <span class="button" (click)="excluir(anuncio)">Excluir</span>
+        </app-meu-anuncio>
+        
+    </p-tabPanel>
+</p-tabView>
+
+  
+</div>

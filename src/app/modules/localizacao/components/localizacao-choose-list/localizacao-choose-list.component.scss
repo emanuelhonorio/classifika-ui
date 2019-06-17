@@ -1,0 +1,29 @@
+.localizacao-component {
+    padding: 20px 0;
+    font-size: .8em;
+    font-weight: bold;
+
+    p {
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    i {
+        font-size: 1.6em;
+        margin-right: 5px;
+    }
+
+    a {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: bold;
+        color: #ccc;
+        font-size: .9em;
+        margin-right: 7px;
+
+        &.selecionado {
+            color: #AA42F4;
+        }
+    }
+    
+}

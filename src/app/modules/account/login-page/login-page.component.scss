@@ -1,0 +1,21 @@
+form {
+
+    max-width: 500px;
+    margin: 0 auto;
+
+    input {
+        width: 100%;
+    }
+    span {
+        color: #333;
+        font-weight: 600;
+        width: 100%;
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        margin-top: 20px;
+    }
+}

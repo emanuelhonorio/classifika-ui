@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  classifikaUrl: 'https://classifika-api.herokuapp.com',
+  tokenStorageName: '_c%'
 };
