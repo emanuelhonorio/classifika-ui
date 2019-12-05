@@ -26,18 +26,20 @@ import { PublicarAnuncioPageComponent } from './pages/publicar-anuncio-page/publ
 import { AnuncioDetalhesPageComponent } from './pages/anuncio-detalhes-page/anuncio-detalhes-page.component';
 import { MeusAnunciosPageComponent } from './pages/meus-anuncios-page/meus-anuncios-page.component';
 import { MeuAnuncioComponent } from './components/meu-anuncio/meu-anuncio.component';
+import { AnuncioFormComponent } from './components/anuncio-form/anuncio-form.component';
+import { AtualizarAnuncioPageComponent } from './pages/atualizar-anuncio-page/atualizar-anuncio-page.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 
 @NgModule({
-  declarations: [AnuncioGridComponent, AnunciosPageComponent, PublicarAnuncioPageComponent, AnuncioDetalhesPageComponent, MeusAnunciosPageComponent, MeuAnuncioComponent],
+  declarations: [AnuncioGridComponent, AnunciosPageComponent, PublicarAnuncioPageComponent, AnuncioDetalhesPageComponent, MeusAnunciosPageComponent, MeuAnuncioComponent, AnuncioFormComponent, AtualizarAnuncioPageComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
     RouterModule,
-    
+
 
     CurrencyMaskModule,
     NgxMaskModule.forRoot(options),
@@ -50,7 +52,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     InputTextareaModule,
     TabViewModule,
     ConfirmDialogModule,
-    
+
     CategoriaModule,
     LocalizacaoModule
   ],

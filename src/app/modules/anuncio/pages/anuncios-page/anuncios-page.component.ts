@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AnuncioService } from '../../services/anuncio.service';
 import { Anuncio, AnuncioFilter, Categoria } from 'src/app/core/models/classifika-models';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-anuncios-page',
   templateUrl: './anuncios-page.component.html',
   styleUrls: ['./anuncios-page.component.scss']
 })
-export class AnunciosPageComponent implements OnInit {
+export class AnunciosPageComponent implements OnInit, OnDestroy {
 
   anuncios: Anuncio[] = [];
   anuncioFilter: AnuncioFilter = {};
   page: number;
   size: number;
 
-  constructor(private anuncioService: AnuncioService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private anuncioService: AnuncioService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastService: ToastrService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     this.pegarFiltrosDaRota();
@@ -23,11 +30,51 @@ export class AnunciosPageComponent implements OnInit {
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd && this.router.url.split('?')[0] == '/') {
-        console.log('entrou');
         this.pegarFiltrosDaRota();
         this.carregarAnuncios();
       }
     });
+  }
+
+  ngOnDestroy() {
+
+  }
+
+  excluirAnuncio(anuncio) {
+    this.confirmationService.confirm({
+      message: 'Deseja realmente excluir este anúncio?',
+      header: 'Confirmação',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.anuncioService.excluirAnuncio(anuncio.id).subscribe(()=> {
+          this.carregarAnuncios();
+          this.toastService.success('Anuncio excluído');
+        }, (err) => {
+          this.toastService.error('Algo deu errado, tente novamente mais tarde');
+        })
+
+      }
+    });
+  }
+
+  desativarAnuncio(anuncio) {
+    this.confirmationService.confirm({
+      message: 'Deseja realmente desativar este anúncio?',
+      header: 'Confirmação',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.anuncioService.toogleAtivoAnuncio(anuncio.id).subscribe(()=> {
+          this.carregarAnuncios();
+          this.toastService.success('Anuncio desativado');
+        }, (err) => {
+          this.toastService.error('Algo deu errado, tente novamente mais tarde');
+        })
+      }
+    });
+  }
+
+  atualizarAnuncio(anuncio) {
+    this.router.navigate(['/anuncios', anuncio.id, 'atualizar']);
   }
 
   get categoriaSelecionada(): Categoria {
@@ -52,7 +99,7 @@ export class AnunciosPageComponent implements OnInit {
   atualizarFiltrosRota() {
     console.log('atualizar: ', this.anuncioFilter);
     this.router.navigate(
-      [], 
+      [],
       {
         relativeTo: this.route,
         queryParams: { c: this.anuncioFilter.categoria, l: this.anuncioFilter.uf, q: this.anuncioFilter.titulo },

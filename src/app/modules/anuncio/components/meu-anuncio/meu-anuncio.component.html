@@ -3,11 +3,10 @@
       <img *ngIf="anuncio?.fotos?.length > 0" [src]="anuncio?.fotos[0]?.url"/>
   </div>
   <div class="anuncio-info">
-      <a href="javascript:;" class="anuncio-titulo">{{anuncio?.titulo}}</a>
+      <a href="javascript:;" class="anuncio-titulo" (click)="select.emit(anuncio)">{{anuncio?.titulo}}</a>
       <span class="anuncio-preco">R$ {{anuncio?.preco | number: '1.2-2' }}</span>
   </div>
   <div class="anuncio-buttons">
-    <ng-content select="span.button">
-    </ng-content>
+    <ng-content select="span.button"></ng-content>
   </div>
 </div>

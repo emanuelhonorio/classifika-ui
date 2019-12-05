@@ -40,3 +40,10 @@
     font-weight: bold;
     color: #AA42F4;
 }
+
+span.button {
+  cursor: pointer;
+  &:not(:last-child) {
+      margin-right: 5px;
+  }
+}

@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   classifikaUrl: 'http://localhost:8080',
-  tokenStorageName: '_c%'
+  tokenStorageName: '_c%',
+  isAdminStorageName: '_t%'
 };
 
 /*

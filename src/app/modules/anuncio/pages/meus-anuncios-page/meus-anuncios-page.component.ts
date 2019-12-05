@@ -3,6 +3,8 @@ import { Anuncio } from 'src/app/core/models/classifika-models';
 import { AnuncioService } from '../../services/anuncio.service';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from 'primeng/api';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-meus-anuncios-page',
@@ -19,8 +21,9 @@ export class MeusAnunciosPageComponent implements OnInit {
 
   constructor(
     private anuncioService: AnuncioService,
-    private toastService: ToastrService, 
-    private confirmationService: ConfirmationService) { }
+    private toastService: ToastrService,
+    private confirmationService: ConfirmationService,
+    private router: Router) { }
 
   ngOnInit() {
     this.initAnuncios();
@@ -85,7 +88,7 @@ export class MeusAnunciosPageComponent implements OnInit {
         }, (err) => {
           this.toastService.error('Algo deu errado, tente novamente mais tarde');
         })
-        
+
       }
     });
   }
@@ -99,6 +102,14 @@ export class MeusAnunciosPageComponent implements OnInit {
         this.toastService.success('Anuncio renovado');
       }
     });
+  }
+
+  atualizar(anuncio) {
+    this.router.navigate(['/anuncios', anuncio.id, 'atualizar']);
+  }
+
+  visualizar(anuncio) {
+    this.router.navigate(['/anuncios', anuncio.id]);
   }
 
 }

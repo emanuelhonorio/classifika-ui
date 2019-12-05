@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
   entrar() {
     this.accountService.logar(this.credencial).subscribe((usuario: Usuario) => {
       this.toastService.success('Logado com sucesso');
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }, (err) => {
       this.toastService.error('Email ou senha inválidos');
     });

@@ -9,9 +9,8 @@ import { Anuncio, AnuncioFilter } from 'src/app/core/models/classifika-models';
 })
 export class AnuncioService {
 
-  private listarAnunciosUrl = `${environment.classifikaUrl}/anuncios`;
+  private anunciosUrl = `${environment.classifikaUrl}/anuncios`;
   private meusAnunciosUrl = `${environment.classifikaUrl}/me/anuncios`;
-  private tokenStorageName = environment.tokenStorageName;
 
   constructor(private http: HttpClient) { }
 
@@ -38,15 +37,11 @@ export class AnuncioService {
       params = params.append('size', size.toString());
     }
 
-    return this.http.get(this.listarAnunciosUrl, { params });
+    return this.http.get(this.anunciosUrl, { params });
   }
 
   listarMeusAnuncios() {
-    const authToken = localStorage.getItem(this.tokenStorageName);
-    const headers = new HttpHeaders({
-      'Authorization': 'Basic ' + authToken
-    });
-    return this.http.get(this.meusAnunciosUrl, {headers});
+    return this.http.get(this.meusAnunciosUrl);
   }
 
   buscarPorId(id: Number) {
@@ -55,38 +50,26 @@ export class AnuncioService {
   }
 
   anunciar(anuncio: Anuncio) {
-    const authToken = localStorage.getItem(this.tokenStorageName);
-    const headers = new HttpHeaders({
-      'Authorization': 'Basic ' + authToken
-    });
-    return this.http.post(this.meusAnunciosUrl, anuncio, { headers });
+    return this.http.post(this.anunciosUrl, anuncio);
+  }
+
+  atualizar(anuncio: Anuncio) {
+    return this.http.put(`${this.anunciosUrl}/${anuncio.id}`, anuncio);
   }
 
   uparFotos(fotos: File[], anuncioId: number) {
-    const authToken = localStorage.getItem(this.tokenStorageName);
-    const headers = new HttpHeaders({
-      'Authorization': 'Basic ' + authToken
-    });
     let formdata: FormData = new FormData();
     for(let i =0; i < fotos.length; i++){
       formdata.append("fotos", fotos[i]);
-    }    
-    return this.http.post(`${this.meusAnunciosUrl}/${anuncioId}/fotos`, formdata, { headers });
+    }
+    return this.http.post(`${this.anunciosUrl}/${anuncioId}/fotos`, formdata);
   }
 
   toogleAtivoAnuncio(anuncioId: number) {
-    const authToken = localStorage.getItem(this.tokenStorageName);
-    const headers = new HttpHeaders({
-      'Authorization': 'Basic ' + authToken
-    });
-    return this.http.patch(`${this.meusAnunciosUrl}/${anuncioId}/ativo`, null, { headers });
+    return this.http.patch(`${this.anunciosUrl}/${anuncioId}/ativo`, null);
   }
 
   excluirAnuncio(anuncioId: number) {
-    const authToken = localStorage.getItem(this.tokenStorageName);
-    const headers = new HttpHeaders({
-      'Authorization': 'Basic ' + authToken
-    });
-    return this.http.delete(`${this.meusAnunciosUrl}/${anuncioId}`, { headers });
+    return this.http.delete(`${this.anunciosUrl}/${anuncioId}`);
   }
 }

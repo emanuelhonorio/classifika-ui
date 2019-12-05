@@ -6,7 +6,52 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: Arial;
+}
+
+.dropdown-container {
+  user-select: none;
+  font-size: .8em;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+/*   box-shadow: inset 0 0 5px black; */
+
+  .dropdown-content {
+    position: absolute;
+    background-color: #eee;
+    right: 0;
+    top: 100%;
+    border-radius: 3px;
+    display: none;
+
+    &:hover {
+      display: block;
+    }
+
+    .dropdown-link {
+      padding: 9px 40px;
+      text-align: center;
+
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+  }
+
+  .dropdown-trigger {
+    border-radius: 1px;
+    padding: 7px 10px;
+
+    &:hover {
+      background-color: #eee;
+
+      & + .dropdown-content {
+        display: block;
+      }
+    }
+
+  }
+
 }

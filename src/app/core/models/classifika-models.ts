@@ -6,6 +6,7 @@ export interface Usuario {
     senha?: string;
     contatos?: Contato[];
     criadoEm?: Date;
+    permissoes?: any[];
 }
 
 export interface Contato {
@@ -38,7 +39,6 @@ export interface Anuncio {
 
 export interface Foto {
     id?: number;
-    nome?: string;
     url?: string;
 }
 

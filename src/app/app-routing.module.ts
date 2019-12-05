@@ -8,6 +8,7 @@ import { AnuncioDetalhesPageComponent } from './modules/anuncio/pages/anuncio-de
 import { MeusAnunciosPageComponent } from './modules/anuncio/pages/meus-anuncios-page/meus-anuncios-page.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { MinhaContaPageComponent } from './modules/account/minha-conta-page/minha-conta-page.component';
+import { AtualizarAnuncioPageComponent } from './modules/anuncio/pages/atualizar-anuncio-page/atualizar-anuncio-page.component';
 
 const routes: Routes = [
   { path: '', component: AnunciosPageComponent, pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'minha-conta', component: MinhaContaPageComponent, canActivate: [AuthGuard] },
   { path: 'anunciar', component: PublicarAnuncioPageComponent, canActivate: [AuthGuard] },
   { path: 'anuncios/:id', component: AnuncioDetalhesPageComponent },
+  { path: 'anuncios/:id/atualizar', component: AtualizarAnuncioPageComponent },
   { path: 'entrar', component: LoginPageComponent },
   { path: 'cadastrar', component: RegisterPageComponent },
   { path: '**', redirectTo: ''}

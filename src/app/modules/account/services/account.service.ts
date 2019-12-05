@@ -14,6 +14,7 @@ export class AccountService {
   private registerUrl: string = environment.classifikaUrl + '/register';
   private meUrl: string = environment.classifikaUrl + '/me';
   private tokenStorageName = environment.tokenStorageName;
+  private isAdminStorageName = environment.isAdminStorageName;
   private contatoUrl = this.meUrl + "/contatos";
 
   constructor(private http: HttpClient) { }
@@ -32,6 +33,9 @@ export class AccountService {
     return this.http.get(this.meUrl, {headers}).pipe(
       map((usuario: Usuario) => {
         localStorage.setItem(this.tokenStorageName, authToken);
+        console.log(usuario.permissoes);
+        let isAdmin = usuario.permissoes.find(p => p.nome == 'ROLE_ADMIN') ? true : false;
+        localStorage.setItem(this.isAdminStorageName, JSON.stringify(isAdmin));
         return usuario;
       }),
       catchError((error) => {
@@ -42,34 +46,31 @@ export class AccountService {
 
   deslogar() {
     localStorage.removeItem(this.tokenStorageName);
+    localStorage.removeItem(this.isAdminStorageName);
   }
 
   getMe() {
-    const authToken = localStorage.getItem(this.tokenStorageName);
-    const headers = new HttpHeaders({
-      'Authorization': 'Basic ' + authToken
-    });
-    return this.http.get(this.meUrl, { headers });
+    return this.http.get(this.meUrl);
   }
 
   isLogado() {
     return !!localStorage.getItem(this.tokenStorageName);
   }
 
+  isAdmin() {
+    return localStorage.getItem(this.isAdminStorageName) == 'true';
+  }
+
+  getToken() {
+    return localStorage.getItem(this.tokenStorageName);
+  }
+
   getContatos() {
-    const authToken = localStorage.getItem(this.tokenStorageName);
-    const headers = new HttpHeaders({
-      'Authorization': 'Basic ' + authToken
-    });
-    return this.http.get(this.contatoUrl, { headers });
+    return this.http.get(this.contatoUrl);
   }
 
   addContato(contato: Contato) {
-    const authToken = localStorage.getItem(this.tokenStorageName);
-    const headers = new HttpHeaders({
-      'Authorization': 'Basic ' + authToken
-    });
-    return this.http.post(this.contatoUrl, contato, { headers });
+    return this.http.post(this.contatoUrl, contato);
   }
 
 }
