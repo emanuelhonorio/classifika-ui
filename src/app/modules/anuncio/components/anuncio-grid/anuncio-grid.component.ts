@@ -16,6 +16,9 @@ export class AnuncioGridComponent implements OnInit {
   @Input()
   anuncios: Anuncio[] = [];
 
+  @Input()
+  page: number = 1;
+
   @Output()
   excluir = new EventEmitter();
 
@@ -25,7 +28,12 @@ export class AnuncioGridComponent implements OnInit {
   @Output()
   desativar = new EventEmitter();
 
+  @Output()
+  pageChange = new EventEmitter();
+
   isAdmin: boolean;
+
+  p: number = 1; // Page
 
   constructor(
     private anuncioService: AnuncioService,
@@ -55,5 +63,9 @@ export class AnuncioGridComponent implements OnInit {
 
   onAtualizar(anuncio) {
     this.atualizar.emit(anuncio);
+  }
+
+  onPageChange(page: number) {
+    this.pageChange.emit(page);
   }
 }

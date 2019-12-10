@@ -17,6 +17,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea'
 import { TabViewModule } from 'primeng/components/tabview/tabview';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AnuncioGridComponent } from './components/anuncio-grid/anuncio-grid.component';
 import { AnunciosPageComponent } from './pages/anuncios-page/anuncios-page.component';
@@ -40,7 +41,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     FormsModule,
     RouterModule,
 
-
+    NgxPaginationModule,
     CurrencyMaskModule,
     NgxMaskModule.forRoot(options),
     FileUploadModule,

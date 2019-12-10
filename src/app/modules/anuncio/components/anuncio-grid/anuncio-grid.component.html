@@ -1,5 +1,5 @@
 <div class="anuncios-grid-component">
-  <app-meu-anuncio *ngFor="let anuncio of anuncios" (select)="gotoToDetaisPage(anuncio)" [anuncio]="anuncio">
+  <app-meu-anuncio *ngFor="let anuncio of anuncios | paginate: { itemsPerPage: 5, currentPage: page }" (select)="gotoToDetaisPage(anuncio)" [anuncio]="anuncio">
       <span *ngIf="isAdmin" class="button">
           <div class="dropdown-container">
               <div class="dropdown-trigger"><i class="fas fa-ellipsis-v"></i></div>
@@ -11,4 +11,5 @@
           </div>
         </span>
   </app-meu-anuncio>
+  <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior" nextLabel="Próxima"></pagination-controls>
 </div>

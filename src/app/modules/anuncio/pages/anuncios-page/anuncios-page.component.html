@@ -12,7 +12,7 @@
             <input class="search-bar" type="text" placeholder="Pesquise por anúncios" #inputTitulo name="titulo" [(ngModel)]="anuncioFilter.titulo">
         </form>
         <app-localizacao-choose-list [localizacaoSelecionada]="anuncioFilter.uf" (select)="aoLocalizacaoSelecionada($event)" (excluir)="aoExcluirLocalizacaoSelecionada($event)"></app-localizacao-choose-list>
-        <app-anuncio-grid [anuncios]="anuncios" (excluir)="excluirAnuncio($event)" (desativar)="desativarAnuncio($event)" (atualizar)="atualizarAnuncio($event)"></app-anuncio-grid>
+        <app-anuncio-grid [anuncios]="anuncios" (excluir)="excluirAnuncio($event)" (desativar)="desativarAnuncio($event)" (atualizar)="atualizarAnuncio($event)" (pageChange)="onPageChange($event)" [page]="page"></app-anuncio-grid>
     </div>
   </div>
 </div>

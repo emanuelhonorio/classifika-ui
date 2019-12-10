@@ -10,7 +10,7 @@ import { ConfirmationService } from 'primeng/api';
   templateUrl: './anuncios-page.component.html',
   styleUrls: ['./anuncios-page.component.scss']
 })
-export class AnunciosPageComponent implements OnInit, OnDestroy {
+export class AnunciosPageComponent implements OnInit {
 
   anuncios: Anuncio[] = [];
   anuncioFilter: AnuncioFilter = {};
@@ -36,8 +36,8 @@ export class AnunciosPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-
+  onPageChange(page) {
+    this.page = page;
   }
 
   excluirAnuncio(anuncio) {
