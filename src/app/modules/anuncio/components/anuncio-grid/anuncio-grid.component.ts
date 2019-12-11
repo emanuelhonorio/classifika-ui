@@ -33,8 +33,6 @@ export class AnuncioGridComponent implements OnInit {
 
   isAdmin: boolean;
 
-  p: number = 1; // Page
-
   constructor(
     private anuncioService: AnuncioService,
     private accountService: AccountService,

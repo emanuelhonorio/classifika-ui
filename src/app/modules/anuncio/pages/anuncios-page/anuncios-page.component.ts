@@ -91,7 +91,7 @@ export class AnunciosPageComponent implements OnInit {
   }
 
   carregarAnuncios() {
-    this.anuncioService.listarAnuncios(this.anuncioFilter, this.page, this.size).subscribe((anunciosPage: any) => {
+    this.anuncioService.listarAnuncios(this.anuncioFilter, null, this.size).subscribe((anunciosPage: any) => {
       this.anuncios = anunciosPage.content;
     });
   }
