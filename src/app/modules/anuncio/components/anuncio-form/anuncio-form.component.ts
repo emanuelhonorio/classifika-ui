@@ -43,7 +43,7 @@ export class AnuncioFormComponent implements OnInit, OnChanges {
   novoContato: Contato = {};
   modalContato = false;
 
-  @ViewChild('fotosComponent')
+  @ViewChild('fotosComponent', { static: true })
   fotosComponent;
 
   uploadedFiles: any[] = [];
