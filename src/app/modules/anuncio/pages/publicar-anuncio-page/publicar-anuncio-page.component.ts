@@ -33,7 +33,7 @@ export class PublicarAnuncioPageComponent implements OnInit {
   novoContato: Contato = {};
   modalContato = false;
 
-  @ViewChild('fotosComponent', { static: false })
+  @ViewChild('fotosComponent')
   fotosComponent;
 
   uploadedFiles: any[] = [];

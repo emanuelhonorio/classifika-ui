@@ -1,64 +1,63 @@
-ngx-gallery /deep/ .ngx-gallery-arrow {
-   color: #000;
+ngx-gallery .ngx-gallery-arrow {
+  color: #000;
 }
 
 h2 {
-   color: #333;
-   margin-bottom: 20px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .anuncio-details {
-   padding: 20px;
-   border: 1px solid #ccc;
-   border-radius: 3px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 
-   .apelido {
-      color: #333;
-      font-size: 1.2em;
-      text-align: center;
-      margin-bottom: 10px;
-   }
+  .apelido {
+    color: #333;
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 10px;
+  }
 
-   .telefone {
-      color: #555;
-      text-align: center;
-      margin-bottom: 30px;
+  .telefone {
+    color: #555;
+    text-align: center;
+    margin-bottom: 30px;
 
-      .telefone-icon {
-         margin-right: 2px;
-      }
-   }
+    .telefone-icon {
+      margin-right: 2px;
+    }
+  }
 
-   .preco {
-      text-align: center;
-      font-size: 2em;
-      color: #AA42F4;
-   }
+  .preco {
+    text-align: center;
+    font-size: 2em;
+    color: #aa42f4;
+  }
 }
 
 .descricao {
-   margin-top: 10px;
-   &-title {
-      font-size: .8em;
-      color: #222;
-      margin-bottom: 10px;
-   }
+  margin-top: 10px;
+  &-title {
+    font-size: 0.8em;
+    color: #222;
+    margin-bottom: 10px;
+  }
 
-   padding: 20px;
-   border: 1px solid #ccc;
-   border-radius: 3px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 .localizacao {
-   margin-top: 10px;
-   &-title {
-      font-size: .8em;
-      color: #222;
-      margin-bottom: 10px;
-   }
+  margin-top: 10px;
+  &-title {
+    font-size: 0.8em;
+    color: #222;
+    margin-bottom: 10px;
+  }
 
-   padding: 20px;
-   border: 1px solid #ccc;
-   border-radius: 3px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
-
