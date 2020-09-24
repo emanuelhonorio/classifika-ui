@@ -1,14 +1,14 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { CategoriaService } from '../../services/categoria.service';
-import { Categoria } from 'src/app/core/models/classifika-models';
+import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
+import { CategoriaService } from "../../services/categoria.service";
+import { Categoria } from "src/app/core/models/classifika-models";
+import { take } from "rxjs/operators";
 
 @Component({
-  selector: 'app-categorias-list',
-  templateUrl: './categorias-list.component.html',
-  styleUrls: ['./categorias-list.component.scss']
+  selector: "app-categorias-list",
+  templateUrl: "./categorias-list.component.html",
+  styleUrls: ["./categorias-list.component.scss"],
 })
 export class CategoriasListComponent implements OnInit {
-  
   categorias: Categoria[] = [];
 
   @Input()
@@ -20,12 +20,15 @@ export class CategoriasListComponent implements OnInit {
   @Output()
   excluir = new EventEmitter();
 
-  constructor(private categoriaService: CategoriaService) { }
+  constructor(private categoriaService: CategoriaService) {}
 
   ngOnInit() {
-    this.categoriaService.listarCategorias().subscribe((categorias: any[]) => {
-      this.categorias = categorias;
-    });
+    this.categoriaService
+      .listarCategorias()
+      .pipe(take(1))
+      .subscribe((categorias: any[]) => {
+        this.categorias = categorias;
+      });
   }
 
   aoClicarCategoria(categoria: any) {
@@ -35,5 +38,4 @@ export class CategoriasListComponent implements OnInit {
   excluirSelecao() {
     this.excluir.emit(this.categoriaSelecionada);
   }
-
 }

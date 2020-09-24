@@ -1,74 +1,155 @@
 <form #f="ngForm">
-    <div class="row">
-      <div class="col-sm-8">
-        <label for="categoria">Categoria:*</label>
-        <p-dropdown  id="categoria" [options]="categoriasDropdown" name="categoria" [(ngModel)]="anuncio.categoria"
-           [filter]="true" filterBy="label,value.nome" required></p-dropdown>
-      </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <label for="categoria">Categoria:*</label>
+      <p-dropdown
+        id="categoria"
+        [options]="categoriasDropdown"
+        name="categoria"
+        [(ngModel)]="anuncio.categoria"
+        [filter]="true"
+        filterBy="label,value.nome"
+        required
+      ></p-dropdown>
     </div>
-    <div class="row">
-      <div class="col-sm-8">
-        <label for="titulo">Título:*</label>
-        <input pInputText type="text" id="titulo" name="titulo" [(ngModel)]="anuncio.titulo" required>
-      </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <label for="titulo">Título:*</label>
+      <input
+        pInputText
+        type="text"
+        id="titulo"
+        name="titulo"
+        [(ngModel)]="anuncio.titulo"
+        required
+      />
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-sm-8">
-        <label for="descricao">Descricao:</label>
-        <textarea pInputTextarea id="descricao" name="descricao" rows="7" spellcheck="false" [(ngModel)]="anuncio.descricao"></textarea>
-      </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <label for="descricao">Descricao:</label>
+      <textarea
+        pInputTextarea
+        id="descricao"
+        name="descricao"
+        rows="7"
+        spellcheck="false"
+        [(ngModel)]="anuncio.descricao"
+      ></textarea>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-sm-3">
-        <label for="preco">Preco:</label>
-        <input pInputText currencyMask type="text" id="preco" name="preco" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false }" [(ngModel)]="anuncio.preco">
-      </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <label for="preco">Preco:</label>
+      <input
+        pInputText
+        currencyMask
+        type="text"
+        id="preco"
+        name="preco"
+        [options]="{
+          prefix: 'R$ ',
+          thousands: '.',
+          decimal: ',',
+          align: 'left',
+          allowNegative: false
+        }"
+        [(ngModel)]="anuncio.preco"
+      />
     </div>
+  </div>
 
-
-
-    <div class="row">
-      <div class="col-sm-12">
-        <label>Fotos</label>
-        <p-fileUpload #fotosComponent name="fotos[]" maxFileSize="1000000" customUpload="true" (uploadHandler)="uploadFotos($event)" multiple="multiple" accept="image/*" maxFileSize="1000000" [showUploadButton]="false"
-        chooseLabel="Escolher" cancelLabel="Cancelar" (onSelect)="onSelect($event)">
+  <div class="row">
+    <div class="col-sm-12">
+      <label>Fotos</label>
+      <p-fileUpload
+        #fotosComponent
+        name="fotos[]"
+        maxFileSize="1000000"
+        customUpload="true"
+        (uploadHandler)="uploadFotos($event)"
+        multiple="multiple"
+        accept="image/*"
+        maxFileSize="1000000"
+        [showUploadButton]="false"
+        chooseLabel="Escolher"
+        cancelLabel="Cancelar"
+        (onSelect)="onSelect($event)"
+      >
       </p-fileUpload>
-      </div>
     </div>
+  </div>
 
-
-    <div class="row">
-      <div class="col-sm-6">
-        <label for="cep">Cep:*</label>
-        <input pInputText type="text" id="cep" name="cep" mask='00000-000' [(ngModel)]="anuncio.cep" (focusout)="consultarCep()" required>
-      </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <label for="cep">Cep:*</label>
+      <input
+        pInputText
+        type="text"
+        id="cep"
+        name="cep"
+        mask="00000-000"
+        [(ngModel)]="anuncio.cep"
+        (focusout)="consultarCep()"
+        required
+      />
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <label for="contato">Telefone:*</label>
-        <p-dropdown id="contato" [options]="contatosDropDown" name="contato" [(ngModel)]="anuncio.contato" required></p-dropdown>
-        <span style="margin-left: 10px"></span>
-        <button pButton type="button" label="Adicionar contato" (click)="modalContato = !modalContato"></button>
-      </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <label for="contato">Telefone:*</label>
+      <p-dropdown
+        id="contato"
+        [options]="contatosDropDown"
+        name="contato"
+        [(ngModel)]="anuncio.contato"
+        required
+      ></p-dropdown>
+      <span style="margin-left: 10px"></span>
+      <button
+        pButton
+        type="button"
+        label="Adicionar contato"
+        (click)="modalContato = !modalContato"
+      ></button>
     </div>
+  </div>
 
+  <div style="margin-top: 30px">
+    <button
+      pButton
+      type="button"
+      [label]="updating ? 'Atualizar' : 'Anunciar'"
+      (click)="anunciar(f)"
+      [disabled]="f.invalid || isSubmitting"
+    ></button>
+  </div>
+</form>
 
-    <div style="margin-top: 30px;">
-        <button pButton type="button" [label]="updating ? 'Atualizar' :  'Anunciar'" (click)="anunciar(f)" [disabled]="f.invalid || isSubmitting"></button>
+<p-dialog header="Adicione um novo contato" [(visible)]="modalContato">
+  <form #fContato="ngForm">
+    <label for="telefone">Telefone</label>
+    <input
+      pInputText
+      type="text"
+      id="telefone"
+      name="telefone"
+      mask="(00) 00000-0000"
+      [(ngModel)]="novoContato.telefone"
+      required
+    />
+    <div style="margin-top: 10px">
+      <button
+        pButton
+        type="button"
+        label="Adicionar"
+        (click)="addContato()"
+        [disabled]="fContato.invalid"
+      ></button>
     </div>
   </form>
-
-  <p-dialog header="Adicione um novo contato" [(visible)]="modalContato">
-    <form #fContato="ngForm">
-        <label for="telefone">Telefone</label>
-        <input pInputText type="text" id="telefone" name="telefone" mask='(00) 00000-0000' [(ngModel)]="novoContato.telefone" required>
-        <div style="margin-top: 10px;">
-            <button pButton type="button" label="Adicionar" (click)="addContato()" [disabled]="fContato.invalid"></button>
-        </div>
-
-    </form>
-
-  </p-dialog>
+</p-dialog>

@@ -1,57 +1,60 @@
 <div class="container">
-  <h2>{{anuncio?.titulo}}</h2>
+  <h2>{{ anuncio?.titulo }}</h2>
 
   <div class="row">
     <div class="col-sm-8">
-      <ngx-gallery *ngIf="galleryImages" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> 
+      <ngx-gallery
+        *ngIf="galleryImages"
+        [options]="galleryOptions"
+        [images]="galleryImages"
+      ></ngx-gallery>
     </div>
     <div class="col-sm-4">
-
       <div class="anuncio-details">
-          <h4 class="apelido">{{anuncio?.usuario?.apelido}}</h4>
-          <div class="telefone">
-            <span class="telefone-icon">
-                <i class="fas fa-phone"></i>
-            </span>
-            {{anuncio?.contato?.telefone}}
-          </div>
-          <div class="preco">
-            <span *ngIf="anuncio?.preco">{{anuncio?.preco | currency : prefix: 'R$ '}}</span>
-            <span *ngIf="!anuncio?.preco">A combinar</span>
-          </div>
+        <h4 class="apelido">{{ anuncio?.usuario?.apelido }}</h4>
+        <div class="telefone">
+          <span class="telefone-icon">
+            <i class="fas fa-phone"></i>
+          </span>
+          {{ anuncio?.contato?.telefone }}
+        </div>
+        <div class="preco">
+          <span *ngIf="anuncio?.preco">{{
+            anuncio?.preco?.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL"
+            })
+          }}</span>
+          <span *ngIf="!anuncio?.preco">A combinar</span>
+        </div>
       </div>
-
     </div>
   </div>
 
   <div class="row">
-      <div class="col-sm-8">
-        <div class="descricao">
-          <h3 class="descricao-title">Descrição</h3>
-          {{anuncio?.descricao}}
-        </div>
+    <div class="col-sm-8">
+      <div class="descricao">
+        <h3 class="descricao-title">Descrição</h3>
+        {{ anuncio?.descricao }}
+      </div>
 
-        <div class="localizacao">
-            <h3 class="localizacao-title">Localizacão</h3>
-            <div class="localizacao-info">
-              <div>
-                <span class="chave">Localidade: </span>
-                <span class="valor">{{localizacaoData.localidade}}</span>
-              </div>
-              <div>
-                <span class="chave">CEP: </span>
-                <span class="valor">{{localizacaoData.cep}}</span>
-              </div>
-              <div>
-                <span class="chave">Bairro: </span>
-                <span class="valor">{{localizacaoData.bairro}}</span>
-              </div>
-            </div>
+      <div class="localizacao">
+        <h3 class="localizacao-title">Localizacão</h3>
+        <div class="localizacao-info">
+          <div>
+            <span class="chave">Localidade: </span>
+            <span class="valor">{{ localizacaoData.localidade }}</span>
           </div>
+          <div>
+            <span class="chave">CEP: </span>
+            <span class="valor">{{ localizacaoData.cep }}</span>
+          </div>
+          <div>
+            <span class="chave">Bairro: </span>
+            <span class="valor">{{ localizacaoData.bairro }}</span>
+          </div>
+        </div>
       </div>
     </div>
-  
-
-  
-  
+  </div>
 </div>

@@ -1,25 +1,35 @@
 <div class="container">
-
   <form #f="ngForm" (ngSubmit)="entrar()">
     <div class="col-sm-12">
       <span for="email">Email:</span>
-      <input type="email" pInputText  id="email" name="email" [(ngModel)]="credencial.email" required/>
+      <input
+        type="email"
+        pInputText
+        id="email"
+        name="email"
+        [(ngModel)]="credencial.email"
+        required
+      />
     </div>
 
     <div class="col-sm-12">
       <span for="senha">Senha:</span>
-      <input type="password" pInputText id="senha" name="senha" [(ngModel)]="credencial.senha" required/>
+      <input
+        type="password"
+        pInputText
+        id="senha"
+        name="senha"
+        [(ngModel)]="credencial.senha"
+        required
+      />
     </div>
 
-    <div class="col-sm-12" style="margin-top: 10px;">
+    <div class="col-sm-12" style="margin-top: 10px">
       <a href="javascript:;" routerLink="/cadastrar"> Não Possui conta?</a>
     </div>
 
     <div class="col-sm-12">
-        <button pButton  label="Entrar" [disabled]="f.invalid"></button>
+      <button pButton label="Entrar" [disabled]="f.invalid"></button>
     </div>
-    
   </form>
-
-
 </div>
