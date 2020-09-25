@@ -5,11 +5,11 @@ Com uma interface elegante, construída com tecnologia inovadora que te possibil
 
 ## Live Demo
 
-Link : "LINK"
+Link : https://classifika-ui.herokuapp.com/
 
 ## Back-end Repository
 
-Link: "LINK"
+Link: https://github.com/emanuelhonorio/classifika-api
 
 ## Project Structure
 
