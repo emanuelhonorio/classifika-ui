@@ -1,6 +1,5 @@
-import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
-import { delay, tap } from "rxjs/operators";
+import { delay, tap, take } from "rxjs/operators";
 import { ApiService } from "./core/services/api.service";
 import { LoadingScreenService } from "./core/services/loading-screen.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
@@ -16,8 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private apiService: ApiService,
-    private loadingScreenService: LoadingScreenService,
-    private router: Router
+    private loadingScreenService: LoadingScreenService
   ) {}
 
   ngOnInit() {
@@ -37,20 +35,18 @@ export class AppComponent implements OnInit, OnDestroy {
         retryWhen((errors) =>
           errors.pipe(
             tap((error) => {
-              if (error?.status === 0) {
+              if (!error.status || error.status === 404) {
                 this.loadingScreenService.isLoading = true;
+              } else if (this.loadingScreenService.isLoading) {
+                this.loadingScreenService.isLoading = false;
+                this.reloadComponent();
               }
             }),
-            delay(3000)
+            delay(5000)
           )
         )
       )
-      .subscribe((a) => {
-        if (this.loadingScreenService.isLoading) {
-          this.loadingScreenService.isLoading = false;
-          this.reloadComponent();
-        }
-      });
+      .subscribe((a) => {});
   }
 
   reloadComponent() {
