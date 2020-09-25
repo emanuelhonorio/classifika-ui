@@ -7,6 +7,8 @@ Com uma interface elegante, construída com tecnologia inovadora que te possibil
 
 Link : https://classifika-ui.herokuapp.com/
 
+![Diagrama de casos de uso](docs/demo.gif?raw=true "Diagrama de casos de uso")
+
 ## Back-end Repository
 
 Link: https://github.com/emanuelhonorio/classifika-api
